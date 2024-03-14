@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calculadora de Excedente de Consumo de Internet</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 20px;
+        background-color: #f4f4f4;
+    }
+    .calculator {
+        max-width: 400px;
+        margin: 0 auto;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background-color: #fff;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    input[type="date"],
+    input[type="number"],
+    button {
+        display: block;
+        margin-bottom: 10px;
+        width: calc(100% - 20px);
+        padding: 10px;
+        box-sizing: border-box;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+    input[type="number"] {
+        text-align: right;
+    }
+    button {
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        cursor: pointer;
+    }
+    button:hover {
+        background-color: #45a049;
+    }
+    .resultado {
+        margin-top: 20px;
+        padding: 10px;
+        border-radius: 5px;
+        background-color: #e1f5fe;
+        display: none;
+    }
+    .resultado p {
+        margin: 0;
+    }
+    .resultado .titulo {
+        font-weight: bold;
+        color: #388e3c; /* Verde agradável */
+    }
+    .mensagemErro {
+        color: red;
+        font-weight: bold;
+    }
+    .creditos {
+        text-align: center;
+        font-size: 12px;
+        margin-top: 20px;
+    }
+    .texto-verde {
+        color: #388e3c; /* Verde agradável */
+    }
+</style>
+</head>
+<body>
+<div class="calculator">
+    <h2>Calculadora de Excedente de Consumo de Internet</h2>
+    <label for="dataInicio">Data de Início:</label>
+    <input type="date" id="dataInicio">
+    <label for="dataFim">Data de Término:</label>
+    <input type="date" id="dataFim">
+    <label for="valorPlano">Valor do Plano do Cliente (mensal): R$</label>
+    <input type="number" id="valorPlano" min="0">
+    <button onclick="validarCampos()">Calcular Excedente</button>
+    <div class="resultado" id="resultado">
+        <p class="titulo texto-verde">Resultado:</p>
+        <p class="texto-verde"><strong id="excedenteTotal"></strong></p>
+        <p class="texto-verde"><strong id="quantidadeDias"></strong></p>
+    </div>
+    <p id="mensagemErro" class="mensagemErro"></p>
+</div>
+<div class="creditos">
+    <p>Desenvolvido por Tiago Ferreira</p>
+</div>
+
+<script>
+function validarCampos() {
+    var dataInicio = document.getElementById("dataInicio").value;
+    var dataFim = document.getElementById("dataFim").value;
+    var valorPlano = document.getElementById("valorPlano").value;
+    var mensagemErro = document.getElementById("mensagemErro");
+
+    mensagemErro.innerHTML = "";
+
+    if (dataInicio === "" || dataFim === "" || valorPlano === "") {
+        mensagemErro.innerHTML = "Todos os campos são obrigatórios.";
+        return;
+    }
+
+    // Verifica se o valor do plano é um número válido
+    if (!validarNumero(valorPlano)) {
+        mensagemErro.innerHTML = "O valor do plano deve ser um número válido.";
+        return;
+    }
+
+    calcularExcedente();
+}
+
+function validarNumero(numero) {
+    return !isNaN(parseFloat(numero)) && isFinite(numero);
+}
+
+function calcularExcedente() {
+    // Obter os valores inseridos pelo usuário
+    var dataInicio = new Date(document.getElementById("dataInicio").value);
+    var dataFim = new Date(document.getElementById("dataFim").value);
+    var valorPlano = parseFloat(document.getElementById("valorPlano").value);
+    
+    // Calcular a diferença de dias entre a data de início e término
+    var diffDias = Math.ceil((dataFim - dataInicio) / (1000 * 60 * 60 * 24));
+    
+    // Calcular o excedente total de consumo de internet
+    var excedenteTotal = (valorPlano / 30) * diffDias;
+    
+    // Exibir o resultado
+    document.getElementById("excedenteTotal").innerHTML = "Excedente total de consumo de internet: <strong>R$" + excedenteTotal.toFixed(2) + "</strong>";
+    document.getElementById("quantidadeDias").innerHTML = "Quantidade de dias de excedente: <strong>" + diffDias + " dias</strong>";
+    document.getElementById("resultado").style.display = "block";
+}
+</script>
+
+</
