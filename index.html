@@ -126,7 +126,7 @@ function calcularExcedente() {
     var valorPlano = parseFloat(document.getElementById("valorPlano").value);
     
     // Calcular a diferença de dias entre a data de início e término
-    var diffDias = Math.ceil((dataFim - dataInicio) / (1000 * 60 * 60 * 24));
+    var diffDias = Math.ceil((dataFim - dataInicio) / (1000 * 60 * 60 * 24)) +1;
     
     // Calcular o excedente total de consumo de internet
     var excedenteTotal = (valorPlano / 30) * diffDias;
