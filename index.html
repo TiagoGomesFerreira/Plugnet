@@ -90,14 +90,6 @@
     </div>
     <p id="mensagemErro" class="mensagemErro"></p>
 </div>
-<div>
-  <a href="#" id="pagina2.html">Clique para mostrar/ocultar conteúdo</a>
-</div>
-
-<div id="conteudo_interno" style="display: none;">
-  Conteúdo que será mostrado/ocultado
-</div>
-
 <script>
 function validarCampos() {
     var dataInicio = document.getElementById("dataInicio").value;
@@ -143,16 +135,4 @@ function calcularExcedente() {
     document.getElementById("resultado").style.display = "block";
 }
 </script>
-<script>
-  document.getElementById("pagina2.html").addEventListener("click", function(event) {
-    event.preventDefault(); // Prevenir o comportamento padrão de redirecionamento do link
-    var conteudo = document.getElementById("conteudo_interno");
-    if (conteudo.style.display === "none") {
-      conteudo.style.display = "block";
-    } else {
-      conteudo.style.display = "none";
-    }
-  });
-</script>
-
 </
