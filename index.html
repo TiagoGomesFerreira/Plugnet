@@ -71,7 +71,9 @@
     }
 </style>
 </head>
+
 <body>
+<div> <link>Informação sobre taxas</div>
 <div class="calculator">
     <h2>Calculadora de Excedente de Consumo de Internet</h2>
     <label for="dataInicio">Data de Início:</label>
@@ -88,8 +90,12 @@
     </div>
     <p id="mensagemErro" class="mensagemErro"></p>
 </div>
-<div class="creditos">
-    <p>Desenvolvido por Tiago Ferreira</p>
+<div>
+  <a href="#" id="link_interno">Clique para mostrar/ocultar conteúdo</a>
+</div>
+
+<div id="conteudo_interno" style="display: none;">
+  Conteúdo que será mostrado/ocultado
 </div>
 
 <script>
@@ -136,6 +142,17 @@ function calcularExcedente() {
     document.getElementById("quantidadeDias").innerHTML = "Quantidade de dias de excedente: <strong>" + diffDias + " dias</strong>";
     document.getElementById("resultado").style.display = "block";
 }
+</script>
+<script>
+  document.getElementById("link_interno").addEventListener("click", function(event) {
+    event.preventDefault(); // Prevenir o comportamento padrão de redirecionamento do link
+    var conteudo = document.getElementById("conteudo_interno");
+    if (conteudo.style.display === "none") {
+      conteudo.style.display = "block";
+    } else {
+      conteudo.style.display = "none";
+    }
+  });
 </script>
 
 </
