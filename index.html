@@ -91,7 +91,7 @@
     <p id="mensagemErro" class="mensagemErro"></p>
 </div>
 <div>
-  <a href="#" id="link_interno">Clique para mostrar/ocultar conteúdo</a>
+  <a href="#" id="pagina2.html">Clique para mostrar/ocultar conteúdo</a>
 </div>
 
 <div id="conteudo_interno" style="display: none;">
@@ -144,7 +144,7 @@ function calcularExcedente() {
 }
 </script>
 <script>
-  document.getElementById("link_interno").addEventListener("click", function(event) {
+  document.getElementById("pagina2.html").addEventListener("click", function(event) {
     event.preventDefault(); // Prevenir o comportamento padrão de redirecionamento do link
     var conteudo = document.getElementById("conteudo_interno");
     if (conteudo.style.display === "none") {
